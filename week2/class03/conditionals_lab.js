@@ -9,23 +9,23 @@
 // 6) If you are 35 or older, you can run for president
 // 7) If you are 62 or older, you collect social security benefits
 
-function whatCanYouDo (age) {
-	// CODE HERE
-	if (age < 16) {
-		console.log('you can go to school! YES!');
-	} else if (age >= 16 && age < 18) {
-		console.log('you can drive');
-	} else if (age >= 18 && age < 21) {
-		console.log('you can vote');
-	} else if (age >= 21 && age < 25) {
-		console.log('you can drink alcohol');
-	} else if (age >= 25 && age < 35) {
-		console.log('you can rent a car');
-	} else if (age >= 35 && age < 62) {
-		console.log('you can run for president');
-	} else if (age >= 62) {
-		console.log('you can collect social security benefits');
-	}
+function whatCanYouDo(age) {
+    // CODE HERE
+    if (age < 16) {
+        console.log('you can go to school! YES!');
+    } else if (age >= 16 && age < 18) {
+        console.log('you can drive');
+    } else if (age >= 18 && age < 21) {
+        console.log('you can vote');
+    } else if (age >= 21 && age < 25) {
+        console.log('you can drink alcohol');
+    } else if (age >= 25 && age < 35) {
+        console.log('you can rent a car');
+    } else if (age >= 35 && age < 62) {
+        console.log('you can run for president');
+    } else if (age >= 62) {
+        console.log('you can collect social security benefits');
+    }
 }
 
 // Change this variable's value to generate different responses from the whatCanYouDo function
