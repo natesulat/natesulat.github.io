@@ -31,6 +31,6 @@ Creating a page where every time the user hits the "Roll Dice" button, the scree
 document.getElementById('roll-dice').onclick = function() {
     dice = ['first-die', 'second-die'];
     dice.forEach(function(i) {
-        document.getElementById(i).className = 'dice dice-' + (Math.floor(Math.random() * 6) + 1);;
+        document.getElementById(i).className = 'dice dice-' + (Math.floor(Math.random() * 6) + 1);
     });
 }
