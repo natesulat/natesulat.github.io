@@ -1,16 +1,16 @@
 var prompt = require('prompt');
 
 // initializes game; prompts user for rock, paper, or scissors input
-function init () {
-	prompt.get('choice', function (err, result) {
-		var choice = result.choice;
+function init() {
+    prompt.get('choice', function (err, result) {
+        var choice = result.choice;
 
-		// error handling - will run prompt again if user does not enter rock, paper, or scissors
-		if (choice !== 'rock' && choice !== 'paper' && choice !== 'scissors') return init();
+        // error handling - will run prompt again if user does not enter rock, paper, or scissors
+        if (choice !== 'rock' && choice !== 'paper' && choice !== 'scissors') return init();
 
-		// triggers game
-		startGame(choice)
-	});
+        // triggers game
+        startGame(choice)
+    });
 }
 
 // turns on prompt; runs init
@@ -18,9 +18,9 @@ prompt.start();
 init();
 
 function startGame(userChoice) {
-	var cpuChoice = generateCPUChoice();
-	var winner = compare(userChoice, cpuChoice);
-	console.log(winner + ' is the winner!');
+    var cpuChoice = generateCPUChoice();
+    var winner = compare(userChoice, cpuChoice);
+    console.log(winner + ' is the winner!');
 }
 
 // YOUR CODE BELOW!
@@ -30,7 +30,10 @@ function startGame(userChoice) {
 // Then, randomly generate a whole number between 0 and 2
 // Use this randomly generated number to pull a value from the array (eg myArray[ranomNum])
 // Ensure you return this value!
-function generateCPUChoice () {
+function generateCPUChoice() {
+    var choices = ['rock', 'paper', 'scissors'],
+        cIndex = Math.floor(Math.random() * 2) + 1;
+    return choices[cIndex];
 }
 
 // 2. The function compare takes two strings (userChoice and cpuChoice) that represent the user's and cpu's respective choices: 'rock', 'paper', or 'scissors'
@@ -38,7 +41,28 @@ function generateCPUChoice () {
 // For example, if userChoice === 'rock' and cpuChoice === 'scissors', then 'user' should be returned
 // Hint: use if/else/ele if logic to compare the values and return a winner
 function compare(userChoice, cpuChoice) {
+    var userChoice = userChoice.toLowerCase(),
+        uW = 'User wins.',
+        cW = 'Computer wins.';
+    if (userChoice === cpuChoice) {
+        return 'Draw. Try again.';
+    } else if (userChoice === 'rock') {
+        if (cpuChoice === 'paper') {
+            return uW
+        } else {
+            return cW
+        }
+    } else if (userChoice === 'paper') {
+        if (cpuChoice === 'rock') {
+            return uW
+        } else {
+            return cW
+        }
+    } else if (userChoice === 'scissors') {
+        if (cpuChoice === 'paper') {
+            return uW
+        } else {
+            return cW
+        }
+    }
 }
-
-
-
