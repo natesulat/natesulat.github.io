@@ -47,7 +47,7 @@ function compare(userChoice, cpuChoice) {
     if (userChoice === cpuChoice) {
         return 'Draw. Try again.';
     } else if (userChoice === 'rock') {
-        if (cpuChoice === 'paper') {
+        if (cpuChoice === 'scissors') {
             return uW
         } else {
             return cW
