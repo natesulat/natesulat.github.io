@@ -1,18 +1,9 @@
     module.exports = function(robot) {
 
-    	/* Tighten up this Regex - can't be included in a word, 
-    	 * but have to accommodate it coming at beginning or end of string
-    	 */
         robot.hear(/\bboo\b/i, function(res) {
             return res.send('https://media.giphy.com/media/133DKEhjAa8aUE/giphy.gif');
         });
-
-        //check out listener middleware, and then learn how to make it respond to just one user
-        //use cases to consider: user asks the bot something while it's in this loop
-        // OR
-        //user takes too long to respond
-        // OR
-        //user's a dick and keeps trying to break the bot (might be good to use brain here)
+        
         robot.respond(/\bboo\b (.*)/i, function(res) {
             var booed = res.match[1];
             var members = res.message.room.members;
@@ -23,6 +14,12 @@
             }
         });
 
-        //create an "actually pretty cool" exception
-        // find a gif!
+        robot.respond(/(.*) is actually pretty cool/i, function(res) {
+            var cool = res.match[1];
+            if (cool.indexOf('@') === 0) {
+                return res.send(cool + ' Who\'s cool? You\'re cool. http://67.media.tumblr.com/f9806e179a6c1374185061c7b1967345/tumblr_inline_mlj8meVRpn1qz4rgp.gif');
+            } else {
+                return res.send('@channel Attention: ' + cool + ' is the coolest. https://media.giphy.com/media/26FxCOdhlvEQXbeH6/giphy.gif')
+            }
+        })
     }
