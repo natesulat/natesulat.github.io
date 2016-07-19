@@ -3,7 +3,7 @@
     	/* Tighten up this Regex - can't be included in a word, 
     	 * but have to accommodate it coming at beginning or end of string
     	 */
-        robot.hear(/boo/i, function(res) {
+        robot.hear(/\bboo\b/i, function(res) {
             return res.send('https://media.giphy.com/media/133DKEhjAa8aUE/giphy.gif');
         });
 
@@ -13,13 +13,13 @@
         //user takes too long to respond
         // OR
         //user's a dick and keeps trying to break the bot (might be good to use brain here)
-        robot.respond(/boo (.*)/i, function(res) {
+        robot.respond(/\bboo\b (.*)/i, function(res) {
             var booed = res.match[1];
             var members = res.message.room.members;
             if (members.indexOf(booed) > -1) {
                 return res.send(booed + ' https://media.giphy.com/media/133DKEhjAa8aUE/giphy.gif');
             } else {
-            	return res.reply('I don\'t know who that is...');
+            	return res.reply('But that person\'s not in the room...');
             }
         });
 
