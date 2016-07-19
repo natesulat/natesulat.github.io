@@ -33,7 +33,6 @@ function startGame(userChoice) {
 function generateCPUChoice() {
     var choices = ['rock', 'paper', 'scissors'],
         cIndex = Math.floor(Math.random() * 3);
-    console.log(cIndex);
     return choices[cIndex];
 }
 
