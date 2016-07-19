@@ -20,7 +20,7 @@ init();
 function startGame(userChoice) {
     var cpuChoice = generateCPUChoice();
     var winner = compare(userChoice, cpuChoice);
-    console.log(winner + ' is the winner!');
+    console.log('You picked ' + userChoice + '. Computer picked ' + cpuChoice + '. ' + winner + ' is the winner!');
 }
 
 // YOUR CODE BELOW!
@@ -32,7 +32,8 @@ function startGame(userChoice) {
 // Ensure you return this value!
 function generateCPUChoice() {
     var choices = ['rock', 'paper', 'scissors'],
-        cIndex = Math.floor(Math.random() * 2) + 1;
+        cIndex = Math.floor(Math.random() * 3);
+    console.log(cIndex);
     return choices[cIndex];
 }
 
@@ -42,10 +43,10 @@ function generateCPUChoice() {
 // Hint: use if/else/ele if logic to compare the values and return a winner
 function compare(userChoice, cpuChoice) {
     var userChoice = userChoice.toLowerCase(),
-        uW = 'User wins.',
-        cW = 'Computer wins.';
+        uW = 'User',
+        cW = 'Computer';
     if (userChoice === cpuChoice) {
-        return 'Draw. Try again.';
+        return 'No one';
     } else if (userChoice === 'rock') {
         if (cpuChoice === 'scissors') {
             return uW
