@@ -14,8 +14,8 @@
 // Although the following line isn't technically JSON (since it's actual JavaScript code)
 // the object that's being saved inside `notActuallyJSON` is written in valid JSON syntax.
 var notActuallyJSON = {
-  "someKey": "someValue",
-  "innerArray": [
+    "someKey": "someValue",
+    "innerArray": [
     "alpha",
     "beta",
     "gamma",
@@ -32,7 +32,10 @@ var notActuallyJSON = {
 // Use JSONLint to validate the object in the following line; then, edit the object so it passes the validator.
 // There are a total of three errors.
 //
-var eddie = {name:"Eddie Vedder", age:49,};
+var eddie = {
+    "name": "Eddie Vedder",
+    "age": 49
+};
 
 // [ Step 3 ]
 // We frequently want to turn a JavaScript object into a JSON string, and vice versa.
@@ -44,39 +47,41 @@ var eddie = {name:"Eddie Vedder", age:49,};
 // Turn the `grungeAlbums` JavaScript object into a JSON string, and store it in `grungeAlbumsJSON`.
 
 var grungeAlbums = {
-  "albums":[
-    {
-        "name": "Bleach",
-        "artist": "Nirvana",
-        "unitsSold": 1700000
+    "albums": [
+        {
+            "name": "Bleach",
+            "artist": "Nirvana",
+            "unitsSold": 1700000
     },
-    {
-        "name": "Nevermind",
-        "artist": "Nirvana",
-        "unitsSold": 30000000
+        {
+            "name": "Nevermind",
+            "artist": "Nirvana",
+            "unitsSold": 30000000
     },
-    {
-        "name": "In Utero",
-        "artist": "Nirvana",
-        "unitsSold": 15000000
+        {
+            "name": "In Utero",
+            "artist": "Nirvana",
+            "unitsSold": 15000000
     },
-    {
-        "name": "Ten",
-        "artist": "Pearl Jam",
-        "unitsSold": 10000000
+        {
+            "name": "Ten",
+            "artist": "Pearl Jam",
+            "unitsSold": 10000000
     },
-    {
-        "name": "Vs",
-        "artist": "Pearl Jam",
-        "unitsSold": 6100000
+        {
+            "name": "Vs",
+            "artist": "Pearl Jam",
+            "unitsSold": 6100000
     },
-    {
-        "name": "Vitalogy",
-        "artist": "Pearl Jam",
-        "unitsSold": 4770000
+        {
+            "name": "Vitalogy",
+            "artist": "Pearl Jam",
+            "unitsSold": 4770000
     }
   ]
 };
+
+var grungeAlbumsJSON = JSON.stringify(grungeAlbums);
 
 // [ Step 4 ]
 // Imagine that we only had JSON to work with, and wanted to convert it to a JS Object.
@@ -92,38 +97,80 @@ var grungeAlbums = {
 //  Artist: Artist name
 //  Units sold: 31234
 
+var grungeAlbumsParsed = JSON.parse(grungeAlbumsJSON);
+
+var a = grungeAlbumsParsed.albums;
+
+Object.keys(a).forEach(function(keys) {
+    console.log(a[keys].name);
+    console.log(a[keys].artist);
+    console.log(a[keys].unitsSold);
+    console.log('--------------------------');
+});
 
 // [ Step 5 ]
 // Create a custom JSON using the JSON validator from Step 1.
 // Convert it back to a JavaScript object, change it, and then convert it back to JSON again. Compare it to your original - how has it changed?
 // Use variables to store each state (as JSON / as a JavaScript Object)
 
+var customJSON = {
+    "MLSteams": [
+        "Atlanta United",
+        "Chicago Fire",
+        "Colorado Rapids",
+        "Columbus Crew SC",
+        "D.C. United",
+        "FC Dallas",
+        "Houston Dynamo",
+        "LA Galaxy",
+        "LAFC",
+        "Montreal Impact",
+        "New England Revolution",
+        "New York City FC",
+        "Red Bull New York",
+        "Orlando City SC",
+        "Philadelphia Union",
+        "Portland Timbers",
+        "Real Salt Lake",
+        "San Jose Earthquakes",
+        "Seattle Sounders",
+        "Sporting Kansas City",
+        "Toronto FC",
+        "Vancouver Whitecaps"
+    ]
+};
 
+// JSONlint says the above is valid JSON. Parsing it gives me an Unexpected Token error. Stackoverflow says I should stringify it.
 
+var customJSON = JSON.stringify(customJSON);
 
+var customJSON2obj = JSON.parse(customJSON);
 
+var newObject = {
+    MLSteams: ['Atlanta United',
+     'Chicago Fire',
+     'Colorado Rapids',
+     'Columbus Crew SC',
+     'D.C. United',
+     'FC Dallas',
+     'Houston Dynamo',
+     'LA Galaxy',
+     'LAFC',
+     'Montreal Impact',
+     'New England Revolution',
+     'New York City FC',
+     'Red Bull New Jersey',
+     'Orlando City SC',
+     'Philadelphia Union',
+     'Portland Timbers',
+     'Real Salt Lake',
+     'San Jose Earthquakes',
+     'Seattle Sounders',
+     'Sporting Kansas City',
+     'Toronto FC',
+     'Vancouver Whitecaps']
+};
 
+var newObject2JSON = JSON.stringify(newObject);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+console.log(newObject2JSON);

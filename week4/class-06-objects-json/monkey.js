@@ -14,3 +14,27 @@ Exercise your monkeys by retrieving their properties and using their methods. Pr
 for retrieving properties (dot notation and brackets).
 
 */
+
+var Monkey = function(name, species, foodsEaten) {
+	this.name = name;
+	this.species = species;
+	if (typeof foodsEaten === 'string') {
+		this.foodsEaten = foodsEaten;
+	} else if (Array.isArray(foodsEaten)) {
+		this.foodsEaten = foodsEaten.join(' and ');
+	}
+	this.eatSomething = function (str) {
+		console.log(this.name + ' ate a ' + str);
+	}
+	this.introduce = function () {
+		console.log('Hi! My name is ' + this.name + '. I am a ' + this.species + ' monkey, and I\'ve eaten ' + this.foodsEaten + '.');
+	}
+}
+
+var fatCat = ['cake', 'brownies', 'a whole bunch of lasagna'];
+
+var Achilles = new Monkey('Achilles', 'spider', 'the hearts of Trojans');
+var Garfield = new Monkey('Garfield', 'president', fatCat);
+var George = new Monkey('George', 'curious', 'a pretzel');
+
+Garfield.introduce();
