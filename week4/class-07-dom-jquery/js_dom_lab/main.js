@@ -11,12 +11,25 @@ Making a favorites list: DOM manipulation
 */
 
 function addToList(list, newThing) {
-
+    list.appendChild(newThing);
 }
 
-window.onload = function() {
-  // YOUR CODE HERE!
-
+window.onload = function () {
+    var myList = document.getElementById('fav-list');
+    var newThing = document.getElementById('new-thing').value;
+    document.getElementById('new-thing').onchange = function () {
+        newThing = this.value;
+    }
+    document.getElementById('new-thing-button').onclick = function () {
+        if (newThing.trim() !== '') {
+            var newItem = document.createElement('LI');
+            var input = document.createTextNode(newThing);
+            var newListItem = newItem.appendChild(input);
+            addToList(myList, newListItem);
+        } else {
+            alert('You must type in a value!');
+        }
+    }
 };
 
 /*
@@ -29,5 +42,3 @@ When they click submit without typing anything, alert the user
   is the empty string.)
 
 */
-
-

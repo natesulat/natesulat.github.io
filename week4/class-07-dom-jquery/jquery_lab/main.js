@@ -9,3 +9,21 @@ You'll add the ability to complete tasks in your favorite things list. Your prog
 - Each new item added by the user needs to also have the "complete task" link at the end.
 
 */
+
+var favThings = $('.fav-thing');
+
+var button = ' <button class="toggleThing">Complete Task</button>';
+
+favThings.each(function (i) {
+    $(this).append(button);
+});
+
+$('#fav-list').on('click', 'button.toggleThing', function(e) {
+    $(this).parent().toggleClass('fav-thing');
+    $(this).parent().toggleClass('crossout');
+});
+
+$('#new-thing-button').click(function (e) {
+    e.preventDefault();
+    $('#fav-list').append('<li class="fav-thing">' + $('#new-thing').val() + button + '</li>');
+});
