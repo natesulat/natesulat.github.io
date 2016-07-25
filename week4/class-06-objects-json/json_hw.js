@@ -9,8 +9,9 @@ var jsonString = '{ "title": "Uploads from everyone", "link": "https://www.flick
 called `flickerObj`
 */
 
+var parsing = JSON.parse(JSON.stringify(jsonString));
 
-
+var flickerObj = JSON.parse(parsing);
 
 /*
 2. Iterate (this means 'use a loop') and do a console.log of each of the item titles
@@ -19,6 +20,12 @@ with the date the photo was taken. The first console.log should return the follo
 "What a surprise in lyon. 2016-02-23T06:47:30-08:00"
 
 */
+
+console.log(flickerObj);
+
+/* Object.keys(items).forEach(function(i) {
+    console.log(items[i])
+});*/
 
 
 /*
