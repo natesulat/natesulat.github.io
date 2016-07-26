@@ -11,7 +11,10 @@ Making a favorites list: DOM manipulation
 */
 
 function addToList(list, newThing) {
-    list.appendChild(newThing);
+    var input = document.createTextNode(newThing);
+    var newListItem = document.createElement('li');
+    newListItem.appendChild(input);
+    list.appendChild(newListItem);
 }
 
 window.onload = function () {
@@ -20,17 +23,16 @@ window.onload = function () {
     document.getElementById('new-thing').onchange = function () {
         newThing = this.value;
     }
-    document.getElementById('new-thing-button').onclick = function () {
+    document.getElementById('new-thing-button').onclick = function (e) {
+        e.preventDefault();
         if (newThing.trim() !== '') {
-            var newItem = document.createElement('LI');
-            var input = document.createTextNode(newThing);
-            var newListItem = newItem.appendChild(input);
-            addToList(myList, newListItem);
+            addToList(myList, newThing);
         } else {
             alert('You must type in a value!');
         }
     }
 };
+
 
 /*
 
