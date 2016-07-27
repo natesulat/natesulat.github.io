@@ -18,12 +18,22 @@
 			</form>
 
 			<ul id="list">
-				<li>Data types</li>
+				<!-- <li>Data types</li>
 				<li>Arrays</li>
 				<li>Objects</li>
-				<li>Functions</li>
+				<li>Functions</li> -->
 			</ul>
 		</div>
+
+		<script id="newTemplate" type="text/x-handlebars-template">
+			{{#each initItems}}
+				<li>{{this}}</li>
+			{{/each}}
+		</script>
+
+		<script id="newListItem" type="text/x-handlebars-template">
+			<li>{{newItem}}</li>
+		</script>
 
 		<script src="js/jquery.min.js"></script>
 		<script src="js/handlebars.js"></script>

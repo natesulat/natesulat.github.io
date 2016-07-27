@@ -46,3 +46,24 @@ var presidentObject = {
         'Obama',
     ]
 }
+
+presidentObject.presidents.forEach(function(i) {
+    $('#jquery-list').append('<option>' + i + '</option');
+});
+
+var titleObj = {
+    title: 'US Presidents',
+    description: 'A JSD Project'
+};
+
+var titleSource = $('#title-template').html();
+var titleCompiled = Handlebars.compile(titleSource);
+
+var titleTemplate = titleCompiled(titleObj);
+var title = $('#title').append(titleTemplate);
+
+
+var listSource = $('#president-list').html();
+var compilePresidents = Handlebars.compile(listSource);
+var menuTemplate = compilePresidents(presidentObject);
+var selectMenu = $('#handlebars-list').append(menuTemplate);

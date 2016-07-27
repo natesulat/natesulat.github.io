@@ -10,6 +10,37 @@
 // Legendary Bonus: Remove individual <li> elements when they are clicked
 
 // similar to window.onload
-$(document).ready(function () {
-	// YOUR CODE HERE
-})
+$(document).ready(function() {
+
+    var initArray = {
+        initItems: [
+            'Data types',
+            'Array',
+            'Objects',
+            'Functions'
+        ]
+    }
+    var newItems = {};
+
+    var initListTemplate = $('#newTemplate').html();
+    var compiledList = Handlebars.compile(initListTemplate);
+    var newList = compiledList(initArray);
+    $('#list').append(newList);
+
+
+    $('#item-form').submit(function(e) {
+        e.preventDefault();
+        newItems.newItem = $('#new-item').val();
+        var compileNewItem = Handlebars.compile($('#newListItem').html());
+        $('#list').append(compileNewItem(newItems));
+        // if ($('#new-item').val().trim() !== '') {
+        //     $('#list').append('<li>' + $('#new-item').val() + '</li>');
+        //     $('#new-item').val('').focus();
+        // } else {
+        // 	alert('You didn\'t enter anything, dummy!');
+        // }
+    });
+    $('#list').on('click', 'li', function() {
+    	$(this).remove();
+    });
+});
