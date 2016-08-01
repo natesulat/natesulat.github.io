@@ -34,38 +34,50 @@ Open Weather Map Instructions:
 
 
 $(document).ready(function () {
-  var apiKey = '22dda68ed14d5d2600ff5a5446627830';
-  var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?q={New York City}&units=imperial&appid=' + apiKey;
-  $.ajax({
-  	url: weatherUrl,
-  	type: 'GET',
-  	success: function(res) {
-  		console.log(res);
-  		$('#nyc-weather').append('Temperature: ' + Math.round(res.main.temp) + '° F || Humidity: ' + res.main.humidity + '% || Wind Speed: ' + res.wind.speed + 'mph');
-  	},
-  	error: function(res) {
-  		console.log('error');
-  	}
-  });
+    var apiKey = '22dda68ed14d5d2600ff5a5446627830';
+    var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?q={New York City}&units=imperial&appid=' + apiKey;
+    $.ajax({
+        url: weatherUrl,
+        type: 'GET',
+        success: function (res) {
+            $('#nyc-weather').append('Temperature: ' + Math.round(res.main.temp) + '° F || Humidity: ' + res.main.humidity + '% || Wind Speed: ' + res.wind.speed + 'mph');
+        },
+        error: function (res) {
+            console.log('error');
+        }
+    });
 
-  $('#enter-a-city').submit(function() {
-  	var city = $('#city-input').replace(/\s/g, '').toLowerCase();
-  	var state = $('#state-input').toLowerCase();
-  	var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + state + '&units=imperial&appid=' + apiKey;
-  	if (city && state) {
-  		$.ajax({
-  			url: url,
-  			type: 'GET',
-  			succes: function(res) {
-  				// summin
-  			},
-  			error: function(res) {
-  				// summin
-  			}
-  		});
-  	} else {
-  		// summin, though maybe just use REQUIRED attribute
-  	}
-  })
+    $('#enter-a-city').submit(function (e) {
+        e.preventDefault();
+        var city = $('#city-input').val().replace(/\s/g, '').toLowerCase();
+        var state = $('#state-input').val().toLowerCase();
+        var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + state + '&units=imperial&appid=' + apiKey;
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (res) {
+                res.city = {name: $('#city-input').val(), state: $('#state-input').val()};
+                res.main.temp = Math.round(res.main.temp);
+                var template = Handlebars.compile($('#user-weather').html());
+                var html = template(res);
+                $('#user-city-weather').html(html);
+                parseInt($('#temp').text()) >= 75 ? $('#temp').css('color', 'red') : $('#temp').css('color', 'blue');
+            },
+            error: function (res) {
+                $('#error').show();
+            }
+        });
+    });
 });
 
+
+/* ******************************* Pre-template form success function ******************************************* */
+
+//                $('#user-city-weather').show();
+//                $('#user-city-weather #city').empty().append($('#city-input').val());
+//                $('#user-city-weather #state').empty().append(state.toUpperCase());
+//                res.main.temp >= 70 ? $('#user-city-weather #temp').empty().append(Math.round(res.main.temp) + '° F').css('color', 'red') : $('#user-city-weather #temp').empty().append(Math.round(res.main.temp) + '° F').css('color', 'blue');
+//                $('#user-city-weather #hum').empty().append(res.main.humidity + '%');
+//                $('#user-city-weather #wind').empty().append(res.wind.speed + ' mph');
+//                $('#city-input').val('');
+//                $('#state-input').val('');

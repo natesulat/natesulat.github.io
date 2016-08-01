@@ -1,22 +1,55 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  	<title></title>
-	<link rel="stylesheet" href="style.css">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-	<h1>Open Weather Maps API</h1>
-	<hr>
+    <h1>Open Weather Maps API</h1>
+    <hr>
 
-	<div>
-		<h2>Current Weather in NYC</h2>
-		<div id="nyc-weather"></div>
-	</div>
-	<hr>
+    <div>
+        <h2>Current Weather in NYC</h2>
+        <div id="nyc-weather"></div>
+    </div>
+    <hr>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  	<script src="main.js" type="text/javascript" charset="utf-8" async defer></script>
+    <div>
+        <form id="enter-a-city">
+            <div class="form-input">
+                US City:
+                <br />
+                <input id="city-input" type="text" placeholder="Type in your city!" required />
+            </div>
+            <div class="form-input">
+                US State (abbreviations, please!):
+                <br />
+                <input id="state-input" type="text" placeholder="Type in your state!" maxlength="2" required />
+            </div>
+            <input type="submit" value="Check the weather!" />
+        </form>
+    </div>
+
+    <div id="user-city-weather"></div>
+
+    <div id="error" style="display: none;">
+        <p>Something went wrong!</p>
+    </div>
+
+    <script type="text/x-handlebars-template" id="user-weather">
+        <p>The weather in {{city.name}}, {{city.state}} is:</p>
+        <p>Temperature: <span id="temp">{{main.temp}}</span>&deg; F</p>
+        <p>Humidity: {{main.humidity}}%</p>
+        <p>Wind Speed: {{wind.speed}} mph</p>
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="handlebars-v4.0.5.js"></script>
+    <script src="main.js" type="text/javascript" charset="utf-8" async defer></script>
 
 </body>
+
 </html>
