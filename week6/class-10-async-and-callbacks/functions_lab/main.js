@@ -27,9 +27,37 @@
  *
  */
 
-function makeCountingFunction() {}
+function makeCountingFunction(condition) {
+    return function(arr) {
+    	var counter = 0;
+    	arr.forEach(function(i) {
+    		if(condition(i)) counter += 1;
+    	});
+        return counter;
+    }
+}
 
-function isOdd() {}
+function sumFunction(condition) {
+	return function(arr) {
+		var counter = 0;
+		arr.forEach(function(i) {
+			counter += i;
+		});
+		return counter;
+	}
+}
+
+function isOdd(x) {
+    if (x % 2 !== 0) return x;
+}
+
+function isEven(x) {
+	if (x % 2 === 0) return x;
+}
+
+function summing(x) {
+	return x;
+}
 
 // =============================================================================
 // The code below should work without modification.
@@ -43,6 +71,8 @@ function isOdd() {}
  */
 
 var countTheOdds = makeCountingFunction(isOdd);
+var countTheEvens = makeCountingFunction(isEven);
+var sumTheNumbers = sumFunction(summing);
 
 /**
  * The final line below calls our new 'countTheOdds()' function and passes in an
@@ -50,6 +80,12 @@ var countTheOdds = makeCountingFunction(isOdd);
  * number 4.
  */
 
-var oddCount = countTheOdds([1, 2, 3, 4, 5, 6, 7]);
+
+var testArray = [1, 2, 3, 4, 5, 6, 7];
+var oddCount = countTheOdds(testArray);
+var evenCount = countTheEvens(testArray);
+var sumCount = sumTheNumbers(testArray);
 console.log('There are ' + oddCount + ' odd numbers.');
+console.log('There are ' + evenCount + ' even numbers.');
+console.log('The sum of the array is: ' + sumCount);
 // expected output: There are 4 odd numbers.
