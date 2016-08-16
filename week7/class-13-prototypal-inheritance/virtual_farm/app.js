@@ -38,8 +38,35 @@ Instructions:
 
 
 $(document).ready(function () {
+    function FarmAnimal(name, sound, image) {
+        this.name = name;
+        this.sound = sound;
+        this.image = image;
+    };
 
-	// push all animal instances here
-	var farmAnimals = [];
+    FarmAnimal.prototype.talk = function () {
+        return function (name, sound) {
+            console.log('I am a ' + name + ' and I go ' + sound)
+        }
+    }
+    var Lion = new FarmAnimal('Lion', 'roar', 'http://res.cloudinary.com/dk-find-out/image/upload/q_80,w_640/DCTM_Penguin_UK_DK_AL455926_tssini.png');
+    var Rooster = new FarmAnimal('Rooster', 'cock-a-doodle-doo', 'https://shoshanakessock.files.wordpress.com/2015/09/o-rooster-crowing-facebook.jpg');
+    var Kangaroo = new FarmAnimal('Kangaroo', 'g\'day', 'http://1.bp.blogspot.com/-7_lxmkpTnis/TmuNQ-q474I/AAAAAAAAADw/nl2GyewSmuk/s640/FunnyPart-com-drunk_kangaroo.jpg');
+    // push all animal instances here
+    var farmAnimals = [Lion, Rooster, Kangaroo];
+
+    var spacing = [25, 50, 75];
+
+    var j = 0;
+
+
+    for (let i = 0; i < farmAnimals.length; i++) {
+        var template = '<div class="animal" style="bottom: ' + spacing[j] + '%; left: 25%; background-image: url(' + i.image + ')"></div>';
+        $('#' + j).click(i.talk(i.name, i.sound));
+        j++;
+        $('body').append(template);
+    });
+
+
 
 })
