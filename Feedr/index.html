@@ -20,10 +20,10 @@
             <nav>
                 <ul>
                     <li><a href="#">News Source: <span>Source Name</span></a>
-                        <ul>
-                            <li><a href="#">Source 1</a></li>
-                            <li><a href="#">Source 2</a></li>
-                            <li><a href="#">Source 3</a></li>
+                        <ul id="source-menu">
+                            <li><a href="#" id="digg">Digg</a></li>
+                            <li><a href="#" id="reddit">Reddit</a></li>
+                            <li><a href="#" id="mashable">Mashable</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -46,79 +46,29 @@
         </div>
     </div>
     <section id="main" class="container">
-        <article class="article">
-            <section class="featuredImage">
-                <img src="images/article_placeholder_1.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-                526
-            </section>
-            <div class="clearfix"></div>
-        </article>
-        <article class="article">
-            <section class="featuredImage">
-                <img src="images/article_placeholder_2.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-                526
-            </section>
-            <div class="clearfix"></div>
-        </article>
-        <article class="article">
-            <section class="featuredImage">
-                <img src="images/article_placeholder_2.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-                526
-            </section>
-            <div class="clearfix"></div>
-        </article>
-        <article class="article">
-            <section class="featuredImage">
-                <img src="images/article_placeholder_1.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-                526
-            </section>
-            <div class="clearfix"></div>
-        </article>
     </section>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')
     </script>
+    <script src="bower_components/handlebars/handlebars.min.js" type="text/javascript"></script>
+    <script src="bower_components/moment/min/moment-with-locales.min.js" type="text/javascript"></script>
     <script src="js/helperUtils.js"></script>
     <script src="js/app.js"></script>
-    <script type="text/x-handlebars-template">
-        <article class="article">
+    <script id="article-template" type="text/x-handlebars-template">
+        {{#each articles}}
+        <article class="article {{src}}" id="{{@index}}">
             <section class="featuredImage">
-                <img src="{{article.image}}" alt="{{article.excerpt}}">
+                <img src="{{img}}" alt="{{excerpt}}">
             </section>
             <section class="articleContent">
-                <a href="#"><h3>{{article.title}}</h3></a>
-                <!-- EACH -->
-                <h6>{{article.tags}}</h6>
-                <!-- END EACH -->
+                <a href="#"><h3>{{title}}</h3></a>
+                <h6>{{tags}}</h6>
             </section>
-            <section class="impressions">{{article.juju}}</section>
+            <section class="impressions">{{juju}}</section>
         </article>
+        {{/each}}
     </script>
 
 </body>
