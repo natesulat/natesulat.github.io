@@ -29,3 +29,25 @@
 	Bonus:
 	- Remove a sticky note if a user clicks on it
 */
+
+$(function() {
+    var eq = 1;
+    $('.container').on('click', '.box', function(e) {
+        e.preventDefault();
+        $(this).remove();
+    });
+    $('#submit').on('click', function(e) {
+        e.preventDefault();
+        var color = $('#color').val(),
+            stickyText = $('#sticky-text').val();
+        if (color && stickyText) {
+            var div = $('<div></div>');
+            div.addClass('box').css('background-color', color).text(eq + '. ' + stickyText);
+            $('.container').append(div);
+        } else {
+        	alert('Enter something');
+        }
+        eq++;
+        $('#color, #sticky-text').val('');
+    });
+});
