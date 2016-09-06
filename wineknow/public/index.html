@@ -7,32 +7,37 @@
 
 <body ng-app="wineKnow">
     <h1>wineKnow</h1>
+    
+    <div class="col-xs-12 rtecenter">
+        <label>Search For:</label><br />
+        <input type="text" ng-model="searchBar" />
+    </div>
 
     <div ng-controller="theLog">
         <div class="col-sm-10 col-sm-offset-1">
             <form id="form" novalidate>
                 <div class="col-sm-3 no-pad">
-                    <h3>Name</h3>
+                    <h3>Name <span ng-class="sortClass" ng-click="orderitems('name')"></span></h3>
                     <br />
                     <input type="text" ng-model="wineData.name" required />
                 </div>
                 <div class="col-sm-2 no-pad">
-                    <h3>Type</h3>
+                    <h3>Type <span ng-class="sortClass" ng-click="orderitems('type')"></span></h3>
                     <br />
                     <input type="text" ng-model="wineData.type" required />
                 </div>
                 <div class="col-sm-2 no-pad">
-                    <h3>Year</h3>
+                    <h3>Year <span ng-class="sortClass" ng-click="orderitems('year')"></span></h3>
                     <br />
                     <input type="text" ng-model="wineData.year" required />
                 </div>
                 <div class="col-sm-3 no-pad">
-                    <h3>Origin</h3>
+                    <h3>Origin <span ng-class="sortClass" ng-click="orderitems('origin')"></span></h3>
                     <br />
                     <input type="text" ng-model="wineData.origin" required />
                 </div>
                 <div class="col-sm-2 no-pad">
-                    <h3>Rating</h3>
+                    <h3>Rating <span ng-class="sortClass" ng-click="orderitems('rating')"></span></h3>
                     <br />
                     <input type="text" ng-model="wineData.rating" required />
                 </div>
@@ -40,7 +45,7 @@
             </form>
         </div>
 
-        <div ng-repeat="wine in wineList" ng-hide="!wineList" class="col-sm-10 col-sm-offset-1">
+        <div ng-repeat="wine in wineList | filter: searchBar | orderBy: orderItems: reverse" ng-hide="!wineList" class="col-sm-10 col-sm-offset-1">
             <h2 class="rtecenter">{{wine.name}} || {{wine.rating}}</h2>
             <h4 class="rtecenter">{{wine.type}} | {{wine.year}} | {{wine.origin}}</h4>
         </div>

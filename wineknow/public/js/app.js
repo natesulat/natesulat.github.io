@@ -19,12 +19,12 @@ var wineKnow = angular.module('wineKnow', ['firebase']);
 
 wineKnow.controller('theLog', ['$scope', '$firebaseArray', '$firebaseAuth', function ($scope, $firebaseArray, $firebaseAuth) {
 //    $scope.auth = $firebaseAuth();
-//    $scope.authObj.$signInWithRedirect("google").then(function () {
-//        // Never called because of page redirect
+//    $scope.auth.$signInWithRedirect("google").then(function () {
+            // console.log(auth);
 //    }).catch(function (error) {
 //        console.error("Authentication failed:", error);
 //    });
-//    $scope.authObj.$onAuthStateChanged(function (firebaseUser) {
+//    $scope.auth.$onAuthStateChanged(function (firebaseUser) {
 //        if (firebaseUser) {
 //            console.log("Signed in as:", firebaseUser.uid);
 //        } else {
@@ -45,7 +45,20 @@ wineKnow.controller('theLog', ['$scope', '$firebaseArray', '$firebaseAuth', func
         }
         $scope.wineData = {};
     };
-//    $scope.sort = function(item) {
-//        
-//    }
+    $scope.orderitems = null;
+    $scope.sortClass = 'sort-by';
+    $scope.reverse = true;
+    $scope.sortIt= function(o) {
+        $scope.orderitems = o;
+        if (!$scope.orderRatings || $scope.reverse === true) {
+            $scope.reverse = false;
+            $scope.sortClass = 'sort-by up';
+        } else {
+            $scope.reverse = true;
+            $scope.sortClass = 'sort-by down';
+        }
+    };
+    $scope.clearSort = function() {
+        $scope.orderitems = null;
+    };
 }]);
