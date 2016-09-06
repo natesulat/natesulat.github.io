@@ -45,6 +45,8 @@ wineKnow.controller('theLog', ['$scope', '$firebaseArray', '$firebaseAuth', func
         }
         $scope.wineData = {};
     };
+    $scope.editWine;
+    $scope.deleteWine;
     $scope.orderitems = null;
     $scope.sortClass = 'sort-by';
     $scope.reverse = true;
