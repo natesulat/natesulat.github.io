@@ -32,6 +32,7 @@ wineKnow.controller('theLog', ['$scope', '$firebaseArray', function ($scope, $fi
             rootRef.ref('wines').push($scope.wineData);
         }
         $scope.wineData = {};
+        $('#form input').eq(0).focus();
     };
     $scope.deleteWine = function (key) {
         wineList.$remove(key);
@@ -39,8 +40,6 @@ wineKnow.controller('theLog', ['$scope', '$firebaseArray', function ($scope, $fi
     $scope.popup = false;
     $scope.editWine = function (key) {
         $scope.popup = true;
-        console.log($scope.popup);
-        console.log(!$scope.popup);
         $scope.wineToEdit = key;
         $scope.postEdits = function(key) {
             wineList.$save(key);
@@ -52,7 +51,7 @@ wineKnow.controller('theLog', ['$scope', '$firebaseArray', function ($scope, $fi
     $scope.reverse = true;
     $scope.sortIt = function (o) {
         $scope.orderitems = o;
-        if (!$scope.orderRatings || $scope.reverse === true) {
+        if (!$scope.orderitems || $scope.reverse === true) {
             $scope.reverse = false;
             $scope.sortClass = 'glyphicon glyphicon-triangle-top';
         } else {
@@ -62,6 +61,6 @@ wineKnow.controller('theLog', ['$scope', '$firebaseArray', function ($scope, $fi
     };
     $scope.clearSort = function () {
         $scope.orderitems = null;
+        $scope.sortClass = 'glyphicon glyphicon-minus';
     };
-    //debugger;
 }]);

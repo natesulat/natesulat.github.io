@@ -5,9 +5,10 @@
 @import url(../fonts/bootstrap/glyphicons-halflings-regular.woff2);
 @import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);
 @import '../../bootstrap';
-
+@import 'mixins';
 body {
     font-family: 'Baloo Tamma', 'Arial', sans-serif;
+    padding-bottom: 1em;
 }
 
 h1 {
@@ -15,6 +16,17 @@ h1 {
     font-size: 65px;
     font-size: 5em;
     margin-bottom: 0px;
+    margin-top: 0px;
+    line-height: 2;
+}
+
+#title {
+    margin-bottom: 1em;
+    overflow: hidden;
+}
+
+input {
+    width: 90%!important;
 }
 
 #form {
@@ -31,13 +43,27 @@ h1 {
             font-size: 0.5em;
         }
     }
-    input {
-        width: 90%!important;
+    button {
+        margin-top: 1em;
+        background-color: #4C4CFF;
+        color: white;
+        @include mobile {
+            width: 100%;
+        }
     }
 }
 
 .no-pad {
     padding: 0px!important;
+}
+
+.wine-glass {
+    background: url(../198392.svg);
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    top: 20px;
 }
 
 .rtecenter {
