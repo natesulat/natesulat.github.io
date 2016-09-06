@@ -1,0 +1,41 @@
+@import url(../fonts/bootstrap/glyphicons-halflings-regular.eot);
+@import url(../fonts/bootstrap/glyphicons-halflings-regular.svg);
+@import url(../fonts/bootstrap/glyphicons-halflings-regular.ttf);
+@import url(../fonts/bootstrap/glyphicons-halflings-regular.woff);
+@import url(../fonts/bootstrap/glyphicons-halflings-regular.woff2);
+@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);
+@import '../../bootstrap';
+
+body {
+    font-family: 'Baloo Tamma', 'Arial', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 65px;
+    font-size: 5em;
+    margin-bottom: 0px;
+}
+
+#form {
+    text-align: center;
+    h3 {
+        background-color: #A11414;
+        color: #fff;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        white-space: normal;
+        margin-bottom: 0px;
+    }
+    input {
+        width: 90%!important;
+    }
+}
+
+.no-pad {
+    padding: 0px!important;
+}
+
+.rtecenter {
+    text-align: center;
+}

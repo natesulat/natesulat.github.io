@@ -1,0 +1,65 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/all.css">
+    <title>WineKnow</title>
+</head>
+
+<body ng-app="wineKnow">
+    <h1>wineKnow</h1>
+
+    <div ng-controller="theLog">
+        <div class="col-sm-10 col-sm-offset-1">
+            <form id="form" novalidate>
+                <div class="col-sm-3 no-pad">
+                    <h3>Name</h3>
+                    <br />
+                    <input type="text" ng-model="wineData.name" required />
+                </div>
+                <div class="col-sm-2 no-pad">
+                    <h3>Type</h3>
+                    <br />
+                    <input type="text" ng-model="wineData.type" required />
+                </div>
+                <div class="col-sm-2 no-pad">
+                    <h3>Year</h3>
+                    <br />
+                    <input type="text" ng-model="wineData.year" required />
+                </div>
+                <div class="col-sm-3 no-pad">
+                    <h3>Origin</h3>
+                    <br />
+                    <input type="text" ng-model="wineData.origin" required />
+                </div>
+                <div class="col-sm-2 no-pad">
+                    <h3>Rating</h3>
+                    <br />
+                    <input type="text" ng-model="wineData.rating" required />
+                </div>
+                <button type="submit" ng-click="addWine()">Log It!</button>
+            </form>
+        </div>
+
+        <div ng-repeat="wine in wineList" ng-hide="!wineList" class="col-sm-10 col-sm-offset-1">
+            <h2 class="rtecenter">{{wine.name}} || {{wine.rating}}</h2>
+            <h4 class="rtecenter">{{wine.type}} | {{wine.year}} | {{wine.origin}}</h4>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script type="text/javascript">
+        var config = {
+            apiKey: "AIzaSyBv2baYU8DveCpp1Wgn0N7upKm8CNQUm9s",
+            authDomain: "wineknow-b8cfb.firebaseapp.com",
+            databaseURL: "https://wineknow-b8cfb.firebaseio.com",
+            storageBucket: "wineknow-b8cfb.appspot.com",
+        };
+        firebase.initializeApp(config);
+
+    </script>
+    <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angularfire.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
