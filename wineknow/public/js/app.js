@@ -17,24 +17,12 @@
 
 var wineKnow = angular.module('wineKnow', ['firebase']);
 
-wineKnow.controller('theLog', ['$scope', '$firebaseArray', '$firebaseAuth', function ($scope, $firebaseArray, $firebaseAuth) {
-//    $scope.auth = $firebaseAuth();
-//    $scope.auth.$signInWithRedirect("google").then(function () {
-            // console.log(auth);
-//    }).catch(function (error) {
-//        console.error("Authentication failed:", error);
-//    });
-//    $scope.auth.$onAuthStateChanged(function (firebaseUser) {
-//        if (firebaseUser) {
-//            console.log("Signed in as:", firebaseUser.uid);
-//        } else {
-//            console.log("Signed out");
-//        }
-//    });
+wineKnow.controller('theLog', ['$scope', '$firebaseArray', function ($scope, $firebaseArray) {
     var rootRef = firebase.database().ref().child('wines');
     var wineList = $firebaseArray(rootRef);
     $scope.wineList = wineList;
     $scope.wineData = {};
+    //debugger;
     $scope.addWine = function () {
         if (wineList) {
             wineList.$add($scope.wineData).then(function (ref) {
@@ -45,22 +33,35 @@ wineKnow.controller('theLog', ['$scope', '$firebaseArray', '$firebaseAuth', func
         }
         $scope.wineData = {};
     };
-    $scope.editWine;
-    $scope.deleteWine;
-    $scope.orderitems = null;
-    $scope.sortClass = 'sort-by';
+    $scope.deleteWine = function (key) {
+        wineList.$remove(key);
+    };
+    $scope.popup = false;
+    $scope.editWine = function (key) {
+        $scope.popup = true;
+        console.log($scope.popup);
+        console.log(!$scope.popup);
+        $scope.wineToEdit = key;
+        $scope.postEdits = function(key) {
+            wineList.$save(key);
+            $scope.popup = false;
+        };
+    };
+    $scope.orderitems;
+    $scope.sortClass = 'glyphicon glyphicon-minus';
     $scope.reverse = true;
-    $scope.sortIt= function(o) {
+    $scope.sortIt = function (o) {
         $scope.orderitems = o;
         if (!$scope.orderRatings || $scope.reverse === true) {
             $scope.reverse = false;
-            $scope.sortClass = 'sort-by up';
+            $scope.sortClass = 'glyphicon glyphicon-triangle-top';
         } else {
             $scope.reverse = true;
-            $scope.sortClass = 'sort-by down';
+            $scope.sortClass = 'glyphicon glyphicon-triangle-bottom';
         }
     };
-    $scope.clearSort = function() {
+    $scope.clearSort = function () {
         $scope.orderitems = null;
     };
+    //debugger;
 }]);
